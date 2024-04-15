@@ -1,4 +1,5 @@
 module.exports = {
+  contracts_build_directory: "./client/src/contracts",
   networks: {
     ganache: {
       host: "127.0.0.1",

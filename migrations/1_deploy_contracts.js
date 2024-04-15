@@ -1,8 +1,6 @@
-var MyToken = artifacts.require("MyToken");
-var CondominiumDAO = artifacts.require("CondominiumDAO");
+var Community = artifacts.require("Community");
 
 
 module.exports = function (deployer) {
-  deployer.deploy(MyToken);
-  deployer.deploy(CondominiumDAO);
+  deployer.deploy(Community);
 };
