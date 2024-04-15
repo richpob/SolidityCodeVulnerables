@@ -1,0 +1,865 @@
+{
+  "contractName": "Nonces",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "currentNonce",
+          "type": "uint256"
+        }
+      ],
+      "name": "InvalidAccountNonce",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "nonces",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"currentNonce\",\"type\":\"uint256\"}],\"name\":\"InvalidAccountNonce\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"nonces\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Provides tracking nonces for addresses. Nonces will only increment.\",\"errors\":{\"InvalidAccountNonce(address,uint256)\":[{\"details\":\"The nonce used for an `account` is not the expected current nonce.\"}]},\"kind\":\"dev\",\"methods\":{\"nonces(address)\":{\"details\":\"Returns the next unused nonce for an address.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/node_modules/@openzeppelin/contracts/utils/Nonces.sol\":\"Nonces\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/node_modules/@openzeppelin/contracts/utils/Nonces.sol\":{\"keccak256\":\"0x0082767004fca261c332e9ad100868327a863a88ef724e844857128845ab350f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://132dce9686a54e025eb5ba5d2e48208f847a1ec3e60a3e527766d7bf53fb7f9e\",\"dweb:/ipfs/QmXn1a2nUZMpu2z6S88UoTfMVtY2YNh86iGrzJDYmMkKeZ\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts (last updated v5.0.0) (utils/Nonces.sol)\npragma solidity ^0.8.20;\n\n/**\n * @dev Provides tracking nonces for addresses. Nonces will only increment.\n */\nabstract contract Nonces {\n    /**\n     * @dev The nonce used for an `account` is not the expected current nonce.\n     */\n    error InvalidAccountNonce(address account, uint256 currentNonce);\n\n    mapping(address account => uint256) private _nonces;\n\n    /**\n     * @dev Returns the next unused nonce for an address.\n     */\n    function nonces(address owner) public view virtual returns (uint256) {\n        return _nonces[owner];\n    }\n\n    /**\n     * @dev Consumes a nonce.\n     *\n     * Returns the current value and increments nonce.\n     */\n    function _useNonce(address owner) internal virtual returns (uint256) {\n        // For each account, the nonce has an initial value of 0, can only be incremented by one, and cannot be\n        // decremented or reset. This guarantees that the nonce never overflows.\n        unchecked {\n            // It is important to do x++ and not ++x here.\n            return _nonces[owner]++;\n        }\n    }\n\n    /**\n     * @dev Same as {_useNonce} but checking that `nonce` is the next valid for `owner`.\n     */\n    function _useCheckedNonce(address owner, uint256 nonce) internal virtual {\n        uint256 current = _useNonce(owner);\n        if (nonce != current) {\n            revert InvalidAccountNonce(owner, current);\n        }\n    }\n}\n",
+  "sourcePath": "/home/ubuntu/Documents/GitHub/MiPrimeraDapp/contracts/node_modules/@openzeppelin/contracts/utils/Nonces.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/node_modules/@openzeppelin/contracts/utils/Nonces.sol",
+    "exportedSymbols": {
+      "Nonces": [
+        25662
+      ]
+    },
+    "id": 25663,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 25596,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".20"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "99:24:274"
+      },
+      {
+        "abstract": true,
+        "baseContracts": [],
+        "canonicalName": "Nonces",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 25597,
+          "nodeType": "StructuredDocumentation",
+          "src": "125:83:274",
+          "text": " @dev Provides tracking nonces for addresses. Nonces will only increment."
+        },
+        "fullyImplemented": true,
+        "id": 25662,
+        "linearizedBaseContracts": [
+          25662
+        ],
+        "name": "Nonces",
+        "nameLocation": "227:6:274",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 25598,
+              "nodeType": "StructuredDocumentation",
+              "src": "240:90:274",
+              "text": " @dev The nonce used for an `account` is not the expected current nonce."
+            },
+            "errorSelector": "752d88c0",
+            "id": 25604,
+            "name": "InvalidAccountNonce",
+            "nameLocation": "341:19:274",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 25603,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 25600,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "369:7:274",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 25604,
+                  "src": "361:15:274",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 25599,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "361:7:274",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 25602,
+                  "mutability": "mutable",
+                  "name": "currentNonce",
+                  "nameLocation": "386:12:274",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 25604,
+                  "src": "378:20:274",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 25601,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "378:7:274",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "360:39:274"
+            },
+            "src": "335:65:274"
+          },
+          {
+            "constant": false,
+            "id": 25608,
+            "mutability": "mutable",
+            "name": "_nonces",
+            "nameLocation": "450:7:274",
+            "nodeType": "VariableDeclaration",
+            "scope": 25662,
+            "src": "406:51:274",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+              "typeString": "mapping(address => uint256)"
+            },
+            "typeName": {
+              "id": 25607,
+              "keyName": "account",
+              "keyNameLocation": "422:7:274",
+              "keyType": {
+                "id": 25605,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "414:7:274",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "406:35:274",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                "typeString": "mapping(address => uint256)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 25606,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "433:7:274",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              }
+            },
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 25620,
+              "nodeType": "Block",
+              "src": "607:38:274",
+              "statements": [
+                {
+                  "expression": {
+                    "baseExpression": {
+                      "id": 25616,
+                      "name": "_nonces",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 25608,
+                      "src": "624:7:274",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                        "typeString": "mapping(address => uint256)"
+                      }
+                    },
+                    "id": 25618,
+                    "indexExpression": {
+                      "id": 25617,
+                      "name": "owner",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 25611,
+                      "src": "632:5:274",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "624:14:274",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 25615,
+                  "id": 25619,
+                  "nodeType": "Return",
+                  "src": "617:21:274"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 25609,
+              "nodeType": "StructuredDocumentation",
+              "src": "464:69:274",
+              "text": " @dev Returns the next unused nonce for an address."
+            },
+            "functionSelector": "7ecebe00",
+            "id": 25621,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "nonces",
+            "nameLocation": "547:6:274",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 25612,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 25611,
+                  "mutability": "mutable",
+                  "name": "owner",
+                  "nameLocation": "562:5:274",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 25621,
+                  "src": "554:13:274",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 25610,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "554:7:274",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "553:15:274"
+            },
+            "returnParameters": {
+              "id": 25615,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 25614,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 25621,
+                  "src": "598:7:274",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 25613,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "598:7:274",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "597:9:274"
+            },
+            "scope": 25662,
+            "src": "538:107:274",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 25635,
+              "nodeType": "Block",
+              "src": "828:326:274",
+              "statements": [
+                {
+                  "id": 25634,
+                  "nodeType": "UncheckedBlock",
+                  "src": "1031:117:274",
+                  "statements": [
+                    {
+                      "expression": {
+                        "id": 25632,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "UnaryOperation",
+                        "operator": "++",
+                        "prefix": false,
+                        "src": "1121:16:274",
+                        "subExpression": {
+                          "baseExpression": {
+                            "id": 25629,
+                            "name": "_nonces",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 25608,
+                            "src": "1121:7:274",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                              "typeString": "mapping(address => uint256)"
+                            }
+                          },
+                          "id": 25631,
+                          "indexExpression": {
+                            "id": 25630,
+                            "name": "owner",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 25624,
+                            "src": "1129:5:274",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": true,
+                          "nodeType": "IndexAccess",
+                          "src": "1121:14:274",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "functionReturnParameters": 25628,
+                      "id": 25633,
+                      "nodeType": "Return",
+                      "src": "1114:23:274"
+                    }
+                  ]
+                }
+              ]
+            },
+            "documentation": {
+              "id": 25622,
+              "nodeType": "StructuredDocumentation",
+              "src": "651:103:274",
+              "text": " @dev Consumes a nonce.\n Returns the current value and increments nonce."
+            },
+            "id": 25636,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_useNonce",
+            "nameLocation": "768:9:274",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 25625,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 25624,
+                  "mutability": "mutable",
+                  "name": "owner",
+                  "nameLocation": "786:5:274",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 25636,
+                  "src": "778:13:274",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 25623,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "778:7:274",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "777:15:274"
+            },
+            "returnParameters": {
+              "id": 25628,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 25627,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 25636,
+                  "src": "819:7:274",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 25626,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "819:7:274",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "818:9:274"
+            },
+            "scope": 25662,
+            "src": "759:395:274",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 25660,
+              "nodeType": "Block",
+              "src": "1338:149:274",
+              "statements": [
+                {
+                  "assignments": [
+                    25645
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 25645,
+                      "mutability": "mutable",
+                      "name": "current",
+                      "nameLocation": "1356:7:274",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 25660,
+                      "src": "1348:15:274",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 25644,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1348:7:274",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 25649,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "id": 25647,
+                        "name": "owner",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 25639,
+                        "src": "1376:5:274",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 25646,
+                      "name": "_useNonce",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 25636,
+                      "src": "1366:9:274",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$_t_uint256_$",
+                        "typeString": "function (address) returns (uint256)"
+                      }
+                    },
+                    "id": 25648,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1366:16:274",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1348:34:274"
+                },
+                {
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 25652,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 25650,
+                      "name": "nonce",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 25641,
+                      "src": "1396:5:274",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "!=",
+                    "rightExpression": {
+                      "id": 25651,
+                      "name": "current",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 25645,
+                      "src": "1405:7:274",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1396:16:274",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 25659,
+                  "nodeType": "IfStatement",
+                  "src": "1392:89:274",
+                  "trueBody": {
+                    "id": 25658,
+                    "nodeType": "Block",
+                    "src": "1414:67:274",
+                    "statements": [
+                      {
+                        "errorCall": {
+                          "arguments": [
+                            {
+                              "id": 25654,
+                              "name": "owner",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 25639,
+                              "src": "1455:5:274",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            {
+                              "id": 25655,
+                              "name": "current",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 25645,
+                              "src": "1462:7:274",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              },
+                              {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            ],
+                            "id": 25653,
+                            "name": "InvalidAccountNonce",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 25604,
+                            "src": "1435:19:274",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_error_pure$_t_address_$_t_uint256_$returns$__$",
+                              "typeString": "function (address,uint256) pure"
+                            }
+                          },
+                          "id": 25656,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1435:35:274",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 25657,
+                        "nodeType": "RevertStatement",
+                        "src": "1428:42:274"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": {
+              "id": 25637,
+              "nodeType": "StructuredDocumentation",
+              "src": "1160:100:274",
+              "text": " @dev Same as {_useNonce} but checking that `nonce` is the next valid for `owner`."
+            },
+            "id": 25661,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_useCheckedNonce",
+            "nameLocation": "1274:16:274",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 25642,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 25639,
+                  "mutability": "mutable",
+                  "name": "owner",
+                  "nameLocation": "1299:5:274",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 25661,
+                  "src": "1291:13:274",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 25638,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1291:7:274",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 25641,
+                  "mutability": "mutable",
+                  "name": "nonce",
+                  "nameLocation": "1314:5:274",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 25661,
+                  "src": "1306:13:274",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 25640,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1306:7:274",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1290:30:274"
+            },
+            "returnParameters": {
+              "id": 25643,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1338:0:274"
+            },
+            "scope": 25662,
+            "src": "1265:222:274",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 25663,
+        "src": "209:1280:274",
+        "usedErrors": [
+          25604
+        ],
+        "usedEvents": []
+      }
+    ],
+    "src": "99:1391:274"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.21+commit.d9974bed.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2024-04-14T22:58:14.661Z",
+  "devdoc": {
+    "details": "Provides tracking nonces for addresses. Nonces will only increment.",
+    "errors": {
+      "InvalidAccountNonce(address,uint256)": [
+        {
+          "details": "The nonce used for an `account` is not the expected current nonce."
+        }
+      ]
+    },
+    "kind": "dev",
+    "methods": {
+      "nonces(address)": {
+        "details": "Returns the next unused nonce for an address."
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

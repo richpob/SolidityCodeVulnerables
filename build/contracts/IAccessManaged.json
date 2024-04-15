@@ -1,0 +1,581 @@
+{
+  "contractName": "IAccessManaged",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "authority",
+          "type": "address"
+        }
+      ],
+      "name": "AccessManagedInvalidAuthority",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "caller",
+          "type": "address"
+        },
+        {
+          "internalType": "uint32",
+          "name": "delay",
+          "type": "uint32"
+        }
+      ],
+      "name": "AccessManagedRequiredDelay",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "caller",
+          "type": "address"
+        }
+      ],
+      "name": "AccessManagedUnauthorized",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "authority",
+          "type": "address"
+        }
+      ],
+      "name": "AuthorityUpdated",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "authority",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "setAuthority",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "isConsumingScheduledOp",
+      "outputs": [
+        {
+          "internalType": "bytes4",
+          "name": "",
+          "type": "bytes4"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"authority\",\"type\":\"address\"}],\"name\":\"AccessManagedInvalidAuthority\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"delay\",\"type\":\"uint32\"}],\"name\":\"AccessManagedRequiredDelay\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"}],\"name\":\"AccessManagedUnauthorized\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"authority\",\"type\":\"address\"}],\"name\":\"AuthorityUpdated\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"authority\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"isConsumingScheduledOp\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"setAuthority\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"events\":{\"AuthorityUpdated(address)\":{\"details\":\"Authority that manages this contract was updated.\"}},\"kind\":\"dev\",\"methods\":{\"authority()\":{\"details\":\"Returns the current authority.\"},\"isConsumingScheduledOp()\":{\"details\":\"Returns true only in the context of a delayed restricted call, at the moment that the scheduled operation is being consumed. Prevents denial of service for delayed restricted calls in the case that the contract performs attacker controlled calls.\"},\"setAuthority(address)\":{\"details\":\"Transfers control to a new authority. The caller must be the current authority.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/node_modules/@openzeppelin/contracts/access/manager/IAccessManaged.sol\":\"IAccessManaged\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/node_modules/@openzeppelin/contracts/access/manager/IAccessManaged.sol\":{\"keccak256\":\"0xaba93d42cd70e1418782951132d97b31ddce5f50ad81090884b6d0e41caac9d6\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b110886f83e3e98a11255a3b56790322e8d83e513304dde71299406685fc6694\",\"dweb:/ipfs/QmPwroS7MUUk1EmsvaJqU6aarhQ8ewJtJMg7xxmTsaxZEv\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts (last updated v5.0.0) (access/manager/IAccessManaged.sol)\n\npragma solidity ^0.8.20;\n\ninterface IAccessManaged {\n    /**\n     * @dev Authority that manages this contract was updated.\n     */\n    event AuthorityUpdated(address authority);\n\n    error AccessManagedUnauthorized(address caller);\n    error AccessManagedRequiredDelay(address caller, uint32 delay);\n    error AccessManagedInvalidAuthority(address authority);\n\n    /**\n     * @dev Returns the current authority.\n     */\n    function authority() external view returns (address);\n\n    /**\n     * @dev Transfers control to a new authority. The caller must be the current authority.\n     */\n    function setAuthority(address) external;\n\n    /**\n     * @dev Returns true only in the context of a delayed restricted call, at the moment that the scheduled operation is\n     * being consumed. Prevents denial of service for delayed restricted calls in the case that the contract performs\n     * attacker controlled calls.\n     */\n    function isConsumingScheduledOp() external view returns (bytes4);\n}\n",
+  "sourcePath": "/home/ubuntu/Documents/GitHub/MiPrimeraDapp/contracts/node_modules/@openzeppelin/contracts/access/manager/IAccessManaged.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/node_modules/@openzeppelin/contracts/access/manager/IAccessManaged.sol",
+    "exportedSymbols": {
+      "IAccessManaged": [
+        7270
+      ]
+    },
+    "id": 7271,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7232,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".20"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "117:24:30"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IAccessManaged",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 7270,
+        "linearizedBaseContracts": [
+          7270
+        ],
+        "name": "IAccessManaged",
+        "nameLocation": "153:14:30",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 7233,
+              "nodeType": "StructuredDocumentation",
+              "src": "174:73:30",
+              "text": " @dev Authority that manages this contract was updated."
+            },
+            "eventSelector": "2f658b440c35314f52658ea8a740e05b284cdc84dc9ae01e891f21b8933e7cad",
+            "id": 7237,
+            "name": "AuthorityUpdated",
+            "nameLocation": "258:16:30",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 7236,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7235,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "authority",
+                  "nameLocation": "283:9:30",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7237,
+                  "src": "275:17:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7234,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "275:7:30",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "274:19:30"
+            },
+            "src": "252:42:30"
+          },
+          {
+            "errorSelector": "068ca9d8",
+            "id": 7241,
+            "name": "AccessManagedUnauthorized",
+            "nameLocation": "306:25:30",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 7240,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7239,
+                  "mutability": "mutable",
+                  "name": "caller",
+                  "nameLocation": "340:6:30",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7241,
+                  "src": "332:14:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7238,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "332:7:30",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "331:16:30"
+            },
+            "src": "300:48:30"
+          },
+          {
+            "errorSelector": "af77169d",
+            "id": 7247,
+            "name": "AccessManagedRequiredDelay",
+            "nameLocation": "359:26:30",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 7246,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7243,
+                  "mutability": "mutable",
+                  "name": "caller",
+                  "nameLocation": "394:6:30",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7247,
+                  "src": "386:14:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7242,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "386:7:30",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7245,
+                  "mutability": "mutable",
+                  "name": "delay",
+                  "nameLocation": "409:5:30",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7247,
+                  "src": "402:12:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 7244,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "402:6:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "385:30:30"
+            },
+            "src": "353:63:30"
+          },
+          {
+            "errorSelector": "c2f31e5e",
+            "id": 7251,
+            "name": "AccessManagedInvalidAuthority",
+            "nameLocation": "427:29:30",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 7250,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7249,
+                  "mutability": "mutable",
+                  "name": "authority",
+                  "nameLocation": "465:9:30",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7251,
+                  "src": "457:17:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7248,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "457:7:30",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "456:19:30"
+            },
+            "src": "421:55:30"
+          },
+          {
+            "documentation": {
+              "id": 7252,
+              "nodeType": "StructuredDocumentation",
+              "src": "482:54:30",
+              "text": " @dev Returns the current authority."
+            },
+            "functionSelector": "bf7e214f",
+            "id": 7257,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "authority",
+            "nameLocation": "550:9:30",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7253,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "559:2:30"
+            },
+            "returnParameters": {
+              "id": 7256,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7255,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7257,
+                  "src": "585:7:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7254,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "585:7:30",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "584:9:30"
+            },
+            "scope": 7270,
+            "src": "541:53:30",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 7258,
+              "nodeType": "StructuredDocumentation",
+              "src": "600:103:30",
+              "text": " @dev Transfers control to a new authority. The caller must be the current authority."
+            },
+            "functionSelector": "7a9e5e4b",
+            "id": 7263,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setAuthority",
+            "nameLocation": "717:12:30",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7261,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7260,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7263,
+                  "src": "730:7:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7259,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "730:7:30",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "729:9:30"
+            },
+            "returnParameters": {
+              "id": 7262,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "747:0:30"
+            },
+            "scope": 7270,
+            "src": "708:40:30",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 7264,
+              "nodeType": "StructuredDocumentation",
+              "src": "754:284:30",
+              "text": " @dev Returns true only in the context of a delayed restricted call, at the moment that the scheduled operation is\n being consumed. Prevents denial of service for delayed restricted calls in the case that the contract performs\n attacker controlled calls."
+            },
+            "functionSelector": "8fb36037",
+            "id": 7269,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isConsumingScheduledOp",
+            "nameLocation": "1052:22:30",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7265,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1074:2:30"
+            },
+            "returnParameters": {
+              "id": 7268,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7267,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7269,
+                  "src": "1100:6:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes4",
+                    "typeString": "bytes4"
+                  },
+                  "typeName": {
+                    "id": 7266,
+                    "name": "bytes4",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1100:6:30",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes4",
+                      "typeString": "bytes4"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1099:8:30"
+            },
+            "scope": 7270,
+            "src": "1043:65:30",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 7271,
+        "src": "143:967:30",
+        "usedErrors": [
+          7241,
+          7247,
+          7251
+        ],
+        "usedEvents": [
+          7237
+        ]
+      }
+    ],
+    "src": "117:994:30"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.21+commit.d9974bed.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2024-04-14T22:58:14.879Z",
+  "devdoc": {
+    "events": {
+      "AuthorityUpdated(address)": {
+        "details": "Authority that manages this contract was updated."
+      }
+    },
+    "kind": "dev",
+    "methods": {
+      "authority()": {
+        "details": "Returns the current authority."
+      },
+      "isConsumingScheduledOp()": {
+        "details": "Returns true only in the context of a delayed restricted call, at the moment that the scheduled operation is being consumed. Prevents denial of service for delayed restricted calls in the case that the contract performs attacker controlled calls."
+      },
+      "setAuthority(address)": {
+        "details": "Transfers control to a new authority. The caller must be the current authority."
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
