@@ -1,5 +1,5 @@
-var Community = artifacts.require("Community");
+var CondominiumDAO = artifacts.require("CondominiumDAO");
 
 module.exports = function(deployer) {
-  deployer.deploy(Community);
+  deployer.deploy(CondominiumDAO);
 };
