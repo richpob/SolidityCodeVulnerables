@@ -1,7 +1,36 @@
-# MiPrimeraDapp
- MiPrimeraDapp
+# Auditoria de Vulnerabilidades de Smart Contract
+ Sūrya's Description Report
 
-URL TX https://sepolia.etherscan.io/tx/0xe3a3305be7bf57dc9b38ce997fd6a07f44256ec93838a5039604aa1ce8717c5b
+ Files Description Table
 
-URL Contrato https://sepolia.etherscan.io/address/0x8dbbb52d1c1a02d99e9f258a69bf7e3586845f44
-URL Verificación https://sepolia.etherscan.io/verifyContract-solc?a=0x8dbbb52d1c1a02d99e9f258a69bf7e3586845f44&c=v0.8.22%2bcommit.4fc1097e&lictype=3
+
+|  File Name  |  SHA-1 Hash  |
+|-------------|--------------|
+| /home/ubuntu/Documents/GitHub/SolidityCodeVulnerables/contracts/VulnerableShop.sol | a77ab440ea096133b4ef8f6902d7550d2a252bfd |
+
+
+ Contracts Description Table
+
+
+|  Contract  |         Type        |       Bases      |                  |                 |
+|:----------:|:-------------------:|:----------------:|:----------------:|:---------------:|
+|     └      |  **Function Name**  |  **Visibility**  |  **Mutability**  |  **Modifiers**  |
+||||||
+| **VulnerableShop** | Implementation | Ownable |||
+| └ | <Constructor> | Public ❗️ | 🛑  |NO❗️ |
+| └ | doBuy | External ❗️ |  💵 |NO❗️ |
+| └ | newSale | External ❗️ | 🛑  |NO❗️ |
+| └ | disputeSale | External ❗️ | 🛑  |NO❗️ |
+| └ | reimburse | External ❗️ | 🛑  | onlyOwner |
+| └ | itemReceived | External ❗️ | 🛑  |NO❗️ |
+| └ | removeMaliciousSale | External ❗️ | 🛑  | onlyOwner |
+| └ | deleteSale | Public ❗️ | 🛑  |NO❗️ |
+| └ | query_dispute | Public ❗️ |   |NO❗️ |
+
+
+ Legend
+
+|  Symbol  |  Meaning  |
+|:--------:|-----------|
+|    🛑    | Function can modify state |
+|    💵    | Function is payable |
