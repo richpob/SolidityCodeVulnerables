@@ -1,3 +1,7 @@
+# Repositorio de Proyecto a Auditar
+## URL
+https://github.com/richpob/SolidityCodeVulnerables/e
+
 # Auditoria de Vulnerabilidades de Smart Contract
 ## 1. VulnerableDAO.sol
 Sūrya's Description Report
