@@ -43,6 +43,29 @@ Sūrya's Description Report
 ![image](https://github.com/richpob/SolidityCodeVulnerables/assets/133718913/a36a5afb-51f7-4f38-87b5-50c32c23ec00)
 ![image](https://github.com/richpob/SolidityCodeVulnerables/assets/133718913/64f9c971-ce08-4976-98d4-0ee3ad689928)
 
+### Slither Print Resumen
+
+INFO:Printers:
+Compiled with solc
+Total number of contracts in source files: 1
+Source lines of code (SLOC) in source files: 60
+Number of  assembly lines: 0
+Number of optimization issues: 0
+Number of informational issues: 3
+Number of low issues: 1
+Number of medium issues: 0
+Number of high issues: 1
+
++---------------+-------------+------+------------+--------------+----------+
+| Name          | # functions | ERCS | ERC20 info | Complex code | Features |
++---------------+-------------+------+------------+--------------+----------+
+| VulnerableDAO |           8 |      |            |           No |          |
++---------------+-------------+------+------------+--------------+----------+
+INFO:Slither:VulnerableDAO.sol analyzed (1 contracts)
+
+![image](https://github.com/richpob/SolidityCodeVulnerables/assets/133718913/f77c5376-241a-4ac5-8b4c-ca100744e9b7)
+
+
 ## 2. VulnerableVault.sol
 
 Sūrya's Description Report
@@ -83,6 +106,7 @@ Sūrya's Description Report
 
 ![image](https://github.com/richpob/SolidityCodeVulnerables/assets/133718913/376c6329-89e7-4d9e-9b9f-cf2f7e6a4c19)
 
+
 ## 3. VulnerableBank.sol
 
 ### Sūrya's Description Report
@@ -120,6 +144,27 @@ Sūrya's Description Report
 ### Gráfico de Interacciones y objetos
 ![image](https://github.com/richpob/SolidityCodeVulnerables/assets/133718913/aa4cd8d4-1e27-48d3-97dd-b4652e6f58b9)
 ![image](https://github.com/richpob/SolidityCodeVulnerables/assets/133718913/08698fef-7591-44f9-a358-4679450de6de)
+
+### Slither Report
+
+INFO:Printers:
+Compiled with solc
+Total number of contracts in source files: 1
+Source lines of code (SLOC) in source files: 48
+Number of  assembly lines: 0
+Number of optimization issues: 1
+Number of informational issues: 6
+Number of low issues: 3
+Number of medium issues: 0
+Number of high issues: 1
+
++----------------+-------------+------+------------+--------------+----------+
+| Name           | # functions | ERCS | ERC20 info | Complex code | Features |
++----------------+-------------+------+------------+--------------+----------+
+| VulnerableBank |           5 |      |            |           No | Send ETH |
++----------------+-------------+------+------------+--------------+----------+
+INFO:Slither:VulnerableBank.sol analyzed (1 contracts)
+![image](https://github.com/richpob/SolidityCodeVulnerables/assets/133718913/fbdb7590-d468-4936-ad84-f697ae168eb9)
 
 
 
